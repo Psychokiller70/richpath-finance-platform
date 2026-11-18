@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RichPath — Finance That Grows with Your Ambition</title>
+  <meta name="description" content="Powerful tools to manage, track and scale your finances seamlessly. Designed to support your goals at every stage of growth.">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ff5a2a'/%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M10 22V10h7.2c2.6 0 4.3 1.6 4.3 3.9 0 1.6-.9 2.9-2.4 3.5L22 22h-3.1l-2.4-4.2H13V22zm3-9.3v3h3.9c1 0 1.7-.6 1.7-1.5s-.7-1.5-1.7-1.5z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <style>
+/* =========================================================
+   RichPath — landing page
+   1. Tokens  2. Base  3. Buttons/atoms  4. Header  5. Hero
+   6. Dashboard  7. Trusted  8. Sections  9. Bento  10. Features
+   11. Pricing  12. FAQ  13. CTA  14. Footer  15. Charts
+   16. Modals/Toast  17. Responsive
+   ========================================================= */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  --bg: #0a0a0b;
+  --surface: #121213;
+  --surface-2: #171718;
+  --surface-3: #1e1e20;
+  --line: rgba(255, 255, 255, .08);
+  --line-2: rgba(255, 255, 255, .15);
+  --text: #fff;
+  --muted: #9b9ba1;
+  --muted-2: #6c6c72;
+  --accent: #ff5a2a;
+  --accent-2: #ff7a45;
+  --accent-deep: #f2461a;
+  --accent-soft: rgba(255, 90, 42, .14);
+  --green: #35d07f;
+
+  --font: "Inter", "Inter Display", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --container: 1240px;
+  --gutter: 24px;
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  --fs-h1: clamp(2.125rem, 1.2rem + 4vw, 4.75rem);
+  --fs-h2: clamp(1.75rem, 1.1rem + 2vw, 2.5rem);
+  --fs-h3: clamp(1.125rem, 1rem + .5vw, 1.375rem);
+  --section-y: clamp(56px, 6vw, 84px);
+  --head-gap: clamp(36px, 4.4vw, 60px);
+
+  --card-bg: linear-gradient(180deg, #171718 0%, #0f0f10 100%);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+input { font: inherit; color: inherit; }
+section[id], footer[id], div[id="app"] { scroll-margin-top: 90px; }
+
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 10px;
+  transition: top .2s;
+}
+.skip-link:focus { top: 12px; }
+
+.ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.ic--fill { fill: currentColor; stroke: none; width: 14px; height: 14px; }
+
+/* ---------- 3. Buttons / atoms ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 54px; padding: 0 28px; min-width: 175px;
+  border-radius: 12px; font-size: 16px; font-weight: 500; line-height: 1; white-space: nowrap;
+  border: 1px solid transparent;
+  transition: transform .2s var(--ease), background .2s, border-color .2s, box-shadow .2s;
+}
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn--primary {
+  background: linear-gradient(180deg, #ff6a3a 0%, #ff5a2a 100%);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 8px 28px rgba(255, 90, 42, .28);
+}
+.btn--primary:hover { background: linear-gradient(180deg, #ff7747 0%, #ff6334 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 10px 34px rgba(255, 90, 42, .42); }
+.btn--dark { background: #19191b; border-color: var(--line-2); color: #fff; }
+.btn--dark:hover { background: #222225; border-color: rgba(255, 255, 255, .25); }
+.btn--ghost { border-color: var(--line-2); }
+.btn--pill { border-radius: var(--r-pill); height: 46px; min-width: 0; padding: 0 28px; font-size: 15px; }
+.btn--block { width: 100%; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 30px; padding: 0 14px; border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, .05); border: 1px solid var(--line);
+  font-size: 12.5px; color: #e6e6e8; margin-bottom: 16px;
+}
+.badge__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo__mark { width: 36px; height: 36px; flex: none; }
+.logo__text { font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+.logo--sm .logo__mark { width: 24px; height: 24px; }
+.logo--sm .logo__text { font-size: 15px; }
+
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 6px 0 10px; }
+.dot:first-child { margin-left: 0; }
+.dot--send { background: var(--accent); }
+.dot--recv { background: #6a6a70; }
+.legend { display: inline-flex; align-items: center; font-size: 11.5px; color: var(--muted); }
+
+/* ---------- 4. Header ---------- */
+.site-header { position: sticky; top: 0; z-index: 60; transition: background .25s, border-color .25s, backdrop-filter .25s; border-bottom: 1px solid transparent; }
+.site-header.is-scrolled { background: rgba(10, 10, 11, .78); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom-color: var(--line); }
+.nav { height: 94px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.nav__links { display: flex; align-items: center; gap: 40px; font-size: 16px; }
+.nav__links > a { color: #d9d9dc; transition: color .2s; padding: 6px 0; position: relative; }
+.nav__links > a:hover { color: #fff; }
+.nav__links > a.is-active { color: var(--accent); }
+.nav__links-mobile-actions { display: none; }
+.nav__actions { justify-self: end; display: flex; align-items: center; gap: 32px; }
+.nav__login { font-size: 16px; color: #e8e8ea; transition: color .2s; }
+.nav__login:hover { color: #fff; }
+.nav__toggle { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: #151516; place-items: center; justify-self: end; }
+.nav__toggle .ic--close { display: none; }
+.site-header.is-open .nav__toggle .ic--menu { display: none; }
+.site-header.is-open .nav__toggle .ic--close { display: block; }
+
+/* ---------- 5. Hero ---------- */
+.hero { position: relative; overflow-x: clip; text-align: center; padding-bottom: 0; }
+.hero::before {
+  content: ""; position: absolute; inset: -94px 0 auto 0; height: 760px; pointer-events: none;
+  background:
+    radial-gradient(52% 46% at 50% 55%, rgba(255, 90, 42, .09), transparent 70%),
+    radial-gradient(90% 60% at 50% 0%, rgba(255, 255, 255, .03), transparent 70%);
+}
+.hero__inner { position: relative; padding-top: 56px; display: flex; flex-direction: column; align-items: center; }
+.hero__title {
+  font-size: var(--fs-h1); font-weight: 500; line-height: 1.18; letter-spacing: -.032em;
+  max-width: 12.6em;
+}
+.hero__lead { margin-top: 16px; max-width: 36em; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.hero__cta { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.hero__stage { position: relative; margin-top: 104px; }
+.hero__arc {
+  position: absolute; left: 50%; top: -74px; width: min(1100px, 118%); height: 150px;
+  transform: translateX(-50%); z-index: 0; pointer-events: none; overflow: visible;
+}
+
+/* ---------- 6. Dashboard preview ---------- */
+.dash {
+  position: relative; z-index: 1; max-width: 1195px; margin-inline: auto; height: 556px; overflow: hidden;
+  text-align: left; border: 1px solid rgba(255, 255, 255, .11); border-bottom: 0; border-radius: 24px 24px 0 0;
+  background: linear-gradient(180deg, #151516 0%, #0e0e0f 100%);
+  box-shadow: 0 -30px 90px rgba(255, 90, 42, .13), inset 0 1px 0 rgba(255, 255, 255, .06);
+  -webkit-mask-image: linear-gradient(#000 78%, transparent 100%);
+  mask-image: linear-gradient(#000 78%, transparent 100%);
+  user-select: none;
+}
+.dash::before { content: ""; position: absolute; left: 12%; right: 12%; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 140, 90, .9), transparent); z-index: 2; }
+.dash__top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 74px; padding: 0 28px; border-bottom: 1px solid var(--line); }
+.dash__tabs { display: flex; gap: 4px; font-size: 13px; color: var(--muted); }
+.dash__tabs span { padding: 8px 15px; border-radius: var(--r-pill); }
+.dash__tabs .is-active { background: #232325; color: #fff; }
+.dash__tools { justify-self: end; display: flex; align-items: center; gap: 12px; }
+.dash__icon { position: relative; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: #cfcfd3; }
+.dash__icon .ic { width: 16px; height: 16px; }
+.dash__icon--dot::after { content: ""; position: absolute; top: 8px; right: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); border: 1px solid #151516; }
+.dash__user { display: flex; align-items: center; gap: 10px; padding-left: 6px; }
+.dash__user img { width: 32px; height: 32px; border-radius: 50%; }
+.dash__user b { display: block; font-size: 12.5px; font-weight: 500; line-height: 1.2; }
+.dash__user small { display: block; font-size: 10.5px; color: var(--muted-2); line-height: 1.3; }
+
+.dash__body { display: grid; grid-template-columns: 76px 1fr; }
+.dash__side { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 30px; border-right: 1px solid var(--line); min-height: 480px; }
+.dash__side span { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; color: #77777d; }
+.dash__side .is-active { background: #232325; color: #fff; }
+.dash__side .ic { width: 18px; height: 18px; }
+.dash__main { padding: 26px 28px 0 28px; min-width: 0; }
+.dash__hello { font-size: 32px; font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+.dash__sub { margin-top: 6px; font-size: 13.5px; color: var(--muted-2); }
+.dash__grid { margin-top: 24px; display: grid; grid-template-columns: 1fr 1.08fr 1.15fr; gap: 16px; align-items: stretch; }
+
+.d-card { background: #171718; border: 1px solid rgba(255, 255, 255, .07); border-radius: 16px; padding: 18px; min-width: 0; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; padding: 4px 8px 4px 6px; border-radius: var(--r-pill); background: #232325; color: #e4e4e6; }
+.chip .ic { width: 12px; height: 12px; }
+.chip__flag { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(180deg, #3c5bd6 0 38%, #fff 38% 50%, #e5413b 50% 100%); }
+.chip--ghost { background: transparent; border: 1px solid var(--line); padding-left: 10px; color: var(--muted); }
+
+.d-balance { display: flex; flex-direction: column; background: linear-gradient(180deg, #1a1a1b, #141415); }
+.d-balance__head { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); }
+.d-balance__amount { margin-top: 14px; font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1.1; }
+.d-balance__delta { margin-top: 6px; font-size: 12px; color: var(--muted-2); }
+.d-balance__delta b { color: var(--green); font-weight: 500; }
+.d-balance__actions { margin-top: 16px; display: flex; gap: 10px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px; border-radius: var(--r-pill); font-size: 13px; font-weight: 500; }
+.pill .ic { width: 14px; height: 14px; }
+.pill--light { background: #d9d9dc; color: #111; }
+.pill--dark { background: #26262a; color: #fff; border: 1px solid var(--line); }
+.d-list { margin-top: 16px; display: grid; gap: 10px; -webkit-mask-image: linear-gradient(#000 25%, transparent 100%); mask-image: linear-gradient(#000 25%, transparent 100%); }
+.d-list li { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; font-size: 12.5px; color: #cfcfd3; }
+.d-list b { font-weight: 500; font-size: 12.5px; }
+.d-list__ic { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; background: #232325; color: #bdbdc2; }
+.d-list__ic .ic { width: 14px; height: 14px; }
+
+.d-stats { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 134px 1fr; gap: 12px; }
+.d-stat { display: flex; flex-direction: column; justify-content: space-between; padding: 16px; }
+.d-stat__label { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+.d-stat__arrow { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, .08); font-style: normal; }
+.d-stat__arrow .ic { width: 11px; height: 11px; }
+.d-stat b { font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1; }
+.d-stat small { font-size: 11px; color: var(--muted-2); margin-top: 8px; display: block; }
+.d-stat--accent {
+  background: radial-gradient(120% 90% at 20% 0%, #ff8a58 0%, #ff5a2a 45%, #e8431a 100%);
+  border-color: rgba(255, 255, 255, .22); box-shadow: 0 14px 40px rgba(255, 90, 42, .3), inset 0 1px 0 rgba(255, 255, 255, .35); color: #fff;
+}
+.d-stat--accent .d-stat__label, .d-stat--accent small { color: rgba(255, 255, 255, .8); }
+.d-stat--accent .d-stat__arrow { background: rgba(255, 255, 255, .22); }
+.d-stat--sm { padding: 14px 16px; }
+.d-stat--sm b { font-size: 22px; margin-top: 10px; }
+
+.d-chart { display: flex; flex-direction: column; background: linear-gradient(180deg, #1a1a1b, #141415); }
+.d-chart__head { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 500; }
+.d-chart__sub { margin-top: 12px; display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
+.d-chart .chart { margin-top: 12px; flex: 1; min-height: 120px; }
+
+/* ---------- 7. Trusted ---------- */
+.trusted { padding-top: 44px; padding-bottom: 66px; text-align: center; }
+.trusted__title { font-size: clamp(1.25rem, 1rem + 1.1vw, 1.75rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
+.logos { margin: 40px auto 0; max-width: 1120px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 32px; color: #77777c; }
+.brand { display: inline-flex; align-items: center; gap: 8px; filter: saturate(0); opacity: .9; transition: color .25s, opacity .25s; }
+.brand:hover { color: #b9b9be; }
+.brand svg { height: 26px; width: auto; }
+.brand__name { font-size: 22px; font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.brand__name--lg { font-size: 23px; }
+.brand__name--heavy { font-weight: 700; letter-spacing: -.045em; font-size: 24px; }
+.brand__name--wide { font-weight: 600; letter-spacing: .12em; font-size: 20px; }
+.brand__name--italic { font-style: italic; font-weight: 700; letter-spacing: -.04em; }
+
+/* ---------- 8. Sections ---------- */
+.section { padding-block: var(--section-y); }
+.section__head { text-align: center; margin: 0 auto var(--head-gap); max-width: 860px; }
+.section__head h2, .faq__head h2, .cta h2 { font-size: var(--fs-h2); font-weight: 500; letter-spacing: -.03em; line-height: 1.2; text-wrap: balance; }
+.section__head p { margin: 16px auto 0; max-width: 40em; color: var(--muted); font-size: 15px; line-height: 1.65; text-wrap: balance; }
+.section__head--narrow { max-width: 660px; margin-bottom: 36px; }
+.section__head--narrow h2 { text-wrap: wrap; }
+
+.card {
+  position: relative; overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  transition: border-color .3s, transform .3s var(--ease);
+}
+
+/* ---------- 9. Bento ---------- */
+.bento { display: grid; grid-template-columns: repeat(24, 1fr); gap: 20px; }
+.bento__card { padding: 28px 28px 0; display: flex; flex-direction: column; min-height: 400px; min-width: 0; }
+.bento__gateway, .bento__schedule { grid-column: span 12; }
+.bento__limits { grid-column: span 9; }
+.bento__track { grid-column: span 15; }
+.bento__card:hover { border-color: var(--line-2); }
+.bento__copy h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
+.bento__copy p { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 34em; }
+
+/* gateway */
+.gw { position: relative; margin: auto -10px 0; height: 224px; }
+.gw__grid {
+  display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(3, 64px); gap: 14px; height: 100%;
+  -webkit-mask-image: radial-gradient(ellipse 62% 78% at 50% 50%, #000 20%, transparent 85%);
+  mask-image: radial-gradient(ellipse 62% 78% at 50% 50%, #000 20%, transparent 85%);
+}
+.gw__tile { display: grid; place-items: center; border-radius: 16px; background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .07); color: rgba(255, 255, 255, .3); }
+.gw__tile .ic { width: 26px; height: 26px; stroke-width: 1.5; }
+.gw__core { position: absolute; left: 50%; top: 50%; width: 78px; height: 78px; transform: translate(-50%, -50%); }
+.gw__core::before { content: ""; position: absolute; inset: -34px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 90, 42, .5), transparent 68%); }
+.gw__core svg { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 10px 28px rgba(255, 90, 42, .55)); }
+
+/* orbit */
+.orbit { width: 100%; height: auto; margin-top: auto; }
+.orbit__lines path { animation: dash 2.2s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -16; } }
+
+/* people */
+.people { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; -webkit-mask-image: linear-gradient(#000 62%, transparent 100%); mask-image: linear-gradient(#000 62%, transparent 100%); }
+.people li { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 14px; background: #19191b; border: 1px solid var(--line); }
+.people li.is-pending { background: linear-gradient(90deg, rgba(255, 90, 42, .26), rgba(255, 90, 42, .06)); border-color: rgba(255, 110, 60, .35); }
+.people img { width: 38px; height: 38px; border-radius: 50%; flex: none; }
+.people__who { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.people__who b { font-size: 14px; font-weight: 500; line-height: 1.3; }
+.people__who small { font-size: 11.5px; color: var(--muted-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.status { font-size: 11.5px; padding: 4px 10px; border-radius: var(--r-pill); font-weight: 500; flex: none; }
+.status--ok { color: var(--green); background: rgba(53, 208, 127, .12); border: 1px solid rgba(53, 208, 127, .25); }
+.status--wait { color: #ff8a5c; background: rgba(255, 90, 42, .14); border: 1px solid rgba(255, 110, 60, .35); }
+
+/* tracking panel */
+.panel { min-width: 0; margin-top: auto; background: #131314; border: 1px solid var(--line); border-bottom: 0; border-radius: 16px 16px 0 0; padding: 16px 18px 14px; }
+.panel__head { display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500; }
+.panel .chart { margin-top: 14px; height: 184px; }
+
+/* ---------- 10. Feature cards ---------- */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.feature { padding: 40px 32px 38px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.feature::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 90px; background: radial-gradient(60% 100% at 50% 0%, rgba(255, 255, 255, .05), transparent); pointer-events: none; transition: background .3s; }
+.feature:hover { border-color: rgba(255, 110, 60, .35); transform: translateY(-3px); }
+.feature:hover::before { background: radial-gradient(60% 100% at 50% 0%, rgba(255, 90, 42, .22), transparent); }
+.feature__icon { position: relative; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 16px; background: #1c1c1e; border: 1px solid var(--line-2); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06); }
+.feature__icon .ic { width: 24px; height: 24px; stroke-width: 1.6; }
+.feature h3 { margin-top: 28px; font-size: var(--fs-h3); font-weight: 500; letter-spacing: -.02em; }
+.feature p { margin-top: 10px; max-width: 21em; color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+
+/* ---------- 11. Pricing ---------- */
+.billing { display: flex; width: fit-content; margin: 0 auto 48px; padding: 4px; gap: 2px; border-radius: var(--r-pill); background: #151516; border: 1px solid var(--line); }
+.billing__btn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 18px; border-radius: var(--r-pill); font-size: 14px; color: var(--muted); transition: background .25s, color .25s; }
+.billing__btn:hover { color: #fff; }
+.billing__btn.is-active { background: var(--accent); color: #fff; box-shadow: 0 6px 20px rgba(255, 90, 42, .3); }
+.billing__save { font-size: 11px; font-weight: 600; padding: 3px 7px; border-radius: 6px; background: var(--accent); color: #fff; line-height: 1.2; }
+.billing__btn.is-active .billing__save { background: rgba(0, 0, 0, .28); }
+
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; align-items: stretch; }
+.plan { padding: 36px 30px 40px; display: flex; flex-direction: column; background: linear-gradient(180deg, rgba(255, 90, 42, .075) 0%, rgba(255, 90, 42, 0) 36%), var(--card-bg); }
+.plan:hover { border-color: var(--line-2); }
+.plan h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: -.02em; }
+.plan__desc { margin-top: 10px; min-height: 44px; color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 19em; }
+.plan__price { margin: 18px 0 22px; display: flex; align-items: baseline; gap: 4px; }
+.plan__amount { font-size: 46px; font-weight: 500; letter-spacing: -.035em; line-height: 1; font-variant-numeric: tabular-nums; }
+.plan__per { font-size: 14px; color: var(--muted); }
+.plan__list { margin-top: 30px; padding-top: 28px; border-top: 1px solid var(--line); display: grid; gap: 16px; }
+.plan__list li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #e3e3e6; line-height: 1.4; }
+.plan__list li i { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; flex: none; }
+.plan__list li i .ic { width: 11px; height: 11px; stroke-width: 2.6; color: #fff; }
+.plan__list--plain li .ic { width: 16px; height: 16px; color: #a2a2a8; }
+.plan--featured {
+  background: radial-gradient(110% 62% at 50% 0%, rgba(255, 90, 42, .6) 0%, rgba(255, 90, 42, .16) 55%, rgba(255, 90, 42, 0) 100%), var(--card-bg);
+  border-color: rgba(255, 120, 70, .4);
+  box-shadow: 0 30px 80px rgba(255, 90, 42, .12), inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+.plan--featured .plan__desc, .plan--featured .plan__per { color: #d8c9c3; }
+
+/* ---------- 12. FAQ ---------- */
+.faq__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(32px, 6vw, 90px); align-items: start; }
+.faq__head { position: sticky; top: 120px; }
+.faq__head h2 { max-width: 11em; text-wrap: balance; }
+.faq__head p { margin-top: 18px; color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 27em; }
+.accordion { display: grid; gap: 18px; }
+.acc { border-radius: 18px; background: #131314; border: 1px solid var(--line); transition: background .35s, border-color .35s; }
+.acc:hover { border-color: var(--line-2); }
+.acc.is-open { background: linear-gradient(135deg, rgba(255, 90, 42, .26) 0%, rgba(255, 90, 42, .07) 55%, rgba(255, 255, 255, .02) 100%); border-color: rgba(255, 120, 70, .35); }
+.acc h3 { font-size: inherit; font-weight: inherit; }
+.acc__btn { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 30px 28px; text-align: left; font-size: clamp(1rem, .9rem + .4vw, 1.25rem); font-weight: 500; letter-spacing: -.015em; line-height: 1.3; }
+.acc__icon { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; flex: none; background: rgba(255, 255, 255, .04); }
+.acc__icon .ic { width: 14px; height: 14px; grid-area: 1 / 1; }
+.acc__icon .ic--minus { display: none; }
+.acc.is-open .acc__icon .ic--plus { display: none; }
+.acc.is-open .acc__icon .ic--minus { display: block; }
+.acc__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+.acc__panel > div { overflow: hidden; visibility: hidden; transition: visibility 0s .4s; }
+.acc.is-open .acc__panel > div { visibility: visible; transition-delay: 0s; }
+.acc.is-open .acc__panel { grid-template-rows: 1fr; }
+.acc__panel p { padding: 0 28px 30px; max-width: 34em; color: #cdc3bf; font-size: 15.5px; line-height: 1.65; }
+
+/* ---------- 13. CTA / newsletter ---------- */
+.cta { padding-block: var(--section-y) calc(var(--section-y) * .9); }
+.cta__inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.cta h2 { font-size: clamp(2rem, 1.2rem + 2.8vw, 3.25rem); max-width: 12em; line-height: 1.15; }
+.news__title { display: block; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); font-weight: 500; letter-spacing: -.02em; margin-bottom: 18px; }
+.news__row { display: flex; gap: 10px; }
+.news input { flex: 1; min-width: 0; height: 52px; padding: 0 18px; border-radius: 12px; background: #151516; border: 1px solid var(--line-2); font-size: 15px; transition: border-color .2s, box-shadow .2s; }
+.news input::placeholder { color: var(--muted-2); }
+.news input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 42, .15); }
+.news input.is-invalid { border-color: #ff4d4d; }
+.news .btn { height: 52px; min-width: 0; padding: 0 28px; }
+.news__msg { margin-top: 12px; font-size: 12.5px; color: var(--muted-2); }
+.news__msg a { color: #c9c9cd; text-decoration: underline; text-underline-offset: 3px; }
+.news__msg.is-ok { color: var(--green); }
+.news__msg.is-error { color: #ff7a6b; }
+
+/* ---------- 14. Footer ---------- */
+.footer { border-top: 1px solid var(--line); padding-top: clamp(48px, 6vw, 80px); }
+.footer__grid { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr 1.2fr; gap: 40px; }
+.footer__brand p { margin-top: 18px; max-width: 18em; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.footer__col h4 { font-size: 16px; font-weight: 500; margin-bottom: 22px; }
+.footer__col > a:not(.store) { display: block; width: fit-content; color: var(--muted); font-size: 14px; margin-bottom: 14px; transition: color .2s; }
+.footer__col > a:not(.store):hover { color: #fff; }
+.store { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 168px; padding: 9px 16px; margin-bottom: 12px; border-radius: 12px; background: #000; border: 1px solid var(--line-2); transition: border-color .2s, background .2s; }
+.store:hover { border-color: rgba(255, 255, 255, .3); background: #0f0f10; }
+.store .ic { width: 22px; height: 22px; }
+.store span { display: flex; flex-direction: column; line-height: 1.15; }
+.store small { font-size: 10px; color: var(--muted); }
+.store b { font-size: 15px; font-weight: 600; }
+.footer__bar { margin-top: 48px; padding: 26px 0 30px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13.5px; color: var(--muted); }
+.footer__legal { display: flex; gap: 40px; }
+.footer__legal a:hover { color: #fff; }
+
+/* ---------- 15. Charts ---------- */
+.chart { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); min-width: 0; grid-template-rows: 1fr auto; column-gap: 10px; row-gap: 8px; font-size: 10.5px; color: var(--muted-2); }
+.chart__y { grid-row: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: right; line-height: 1; margin-block: -5px; padding-block: 0; }
+.chart--mini .chart__y { display: none; }
+.chart--mini { grid-template-columns: minmax(0, 1fr); }
+.chart__plot { grid-row: 1; position: relative; }
+.chart__grid { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; }
+.chart__grid i { display: block; height: 0; border-top: 1px dashed rgba(255, 255, 255, .07); }
+.chart--mini .chart__grid { display: none; }
+.chart__cols { position: absolute; inset: 0; display: flex; align-items: stretch; gap: 3%; padding-inline: 1.5%; }
+.chart__col { flex: 1; min-width: 0; display: flex; align-items: flex-end; justify-content: center; border-radius: 6px; }
+.chart__bar { width: min(100%, 22px); display: flex; flex-direction: column; justify-content: flex-end; border-radius: 6px 6px 3px 3px; overflow: hidden; transition: filter .2s, transform .3s var(--ease); transform-origin: bottom; }
+.chart--mini .chart__bar { width: min(100%, 14px); border-radius: 4px 4px 2px 2px; }
+.chart__bar .s { background: linear-gradient(180deg, #ff6f3f, #ff4f1f); }
+.chart__bar .r { background: linear-gradient(180deg, #4a4a4f, #333337); }
+.chart__col:hover .chart__bar, .chart__col.is-active .chart__bar { filter: brightness(1.25); }
+.chart__col:focus-visible { outline-offset: 0; }
+.chart__x { grid-row: 2; grid-column: 2; display: flex; gap: 3%; padding-inline: 1.5%; text-align: center; }
+.chart--mini .chart__x { grid-column: 1; }
+.chart__x span { flex: 1; min-width: 0; }
+.chart--mini .chart__x { display: none; }
+.chart__tip {
+  position: absolute; z-index: 3; min-width: 112px; padding: 6px 10px; border-radius: 10px; pointer-events: none;
+  background: linear-gradient(180deg, #ff6a3a, #f2501f); color: #fff; font-size: 10.5px; line-height: 1.4;
+  box-shadow: 0 10px 28px rgba(255, 90, 42, .4); transform: translate(-50%, -100%); margin-top: -10px; white-space: nowrap;
+  transition: left .25s var(--ease), top .25s var(--ease);
+}
+.chart__tip::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 9px; height: 9px; background: #f4531f; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+.chart__tip small { display: block; font-size: 9.5px; opacity: .85; }
+.chart__tip b { font-weight: 600; font-size: 11px; }
+
+/* ---------- 16. Modals / toast ---------- */
+.modal { width: min(460px, calc(100% - 32px)); margin: auto; padding: 24px; color: #fff; background: #111112; border: 1px solid var(--line-2); border-radius: 22px; box-shadow: 0 40px 120px rgba(0, 0, 0, .7), 0 0 80px rgba(255, 90, 42, .08); }
+.modal::backdrop { background: rgba(0, 0, 0, .66); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.modal[open] { animation: pop .3s var(--ease); }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+.modal__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+.modal__head h2 { font-size: 20px; font-weight: 500; letter-spacing: -.02em; }
+.modal__close { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-2); transition: background .2s; }
+.modal__close:hover { background: #222; }
+
+.tour__stage { position: relative; min-height: 190px; border-radius: 16px; background: radial-gradient(90% 90% at 50% 0%, rgba(255, 90, 42, .22), rgba(255, 90, 42, 0) 70%), #161617; border: 1px solid var(--line); overflow: hidden; }
+.tour__slide { position: absolute; inset: 0; padding: 26px; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateX(16px); pointer-events: none; transition: opacity .35s, transform .35s var(--ease); }
+.tour__slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.tour__icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--accent); margin-bottom: 14px; box-shadow: 0 10px 28px rgba(255, 90, 42, .4); }
+.tour__slide h3 { font-size: 18px; font-weight: 500; }
+.tour__slide p { margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.tour__dots { display: flex; justify-content: center; gap: 8px; margin: 16px 0; }
+.tour__dots button { width: 8px; height: 8px; border-radius: 50%; background: #3a3a3e; transition: width .3s var(--ease), background .3s; }
+.tour__dots button.is-active { width: 24px; border-radius: 6px; background: var(--accent); }
+.tour__actions { display: flex; gap: 10px; }
+.tour__actions .btn { flex: 1; min-width: 0; height: 48px; }
+
+.auth__tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 12px; background: #19191a; border: 1px solid var(--line); margin-bottom: 18px; }
+.auth__tabs button { height: 38px; border-radius: 9px; font-size: 14px; color: var(--muted); transition: background .2s, color .2s; }
+.auth__tabs button.is-active { background: #2a2a2d; color: #fff; }
+.auth__plan { margin-bottom: 14px; padding: 8px 12px; font-size: 13px; border-radius: 10px; color: #ffb59c; background: var(--accent-soft); border: 1px solid rgba(255, 110, 60, .3); }
+.auth__form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field[hidden] { display: none; }
+.field span { font-size: 13px; color: var(--muted); }
+.field input { height: 48px; padding: 0 14px; border-radius: 12px; background: #17171a; border: 1px solid var(--line-2); font-size: 15px; transition: border-color .2s, box-shadow .2s; }
+.field input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 42, .15); }
+.field input.is-invalid { border-color: #ff4d4d; }
+.auth__error { min-height: 18px; font-size: 13px; color: #ff7a6b; }
+.auth__form .btn { height: 50px; }
+
+.toast { position: fixed; left: 50%; bottom: 28px; z-index: 200; max-width: calc(100% - 32px); padding: 12px 18px; border-radius: 14px; background: #1b1b1d; border: 1px solid var(--line-2); font-size: 14px; box-shadow: 0 16px 50px rgba(0, 0, 0, .55); transform: translate(-50%, 30px); opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s var(--ease); }
+.toast.is-show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- 17. Responsive ---------- */
+@media (max-width: 1280px) {
+  .nav__links { gap: 30px; }
+  .footer__grid { gap: 28px; }
+}
+
+@media (max-width: 1100px) {
+  .dash { height: auto; max-height: none; }
+  .dash__user small, .dash__icon:not(.dash__icon--dot) { display: none; }
+  .dash__tabs span { padding: 8px 12px; }
+  .dash__grid { grid-template-columns: 1fr 1fr; }
+  .d-chart { grid-column: 1 / -1; }
+  .d-chart .chart { min-height: 140px; }
+  .dash__side { min-height: 0; }
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .footer__col--app { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .footer__col--app h4 { width: 100%; margin-bottom: 8px; }
+  .footer__col--app .store { margin: 0; width: auto; min-width: 160px; }
+}
+
+@media (max-width: 900px) {
+  :root { --gutter: 20px; }
+  .dash__user > span, .dash__tabs { display: none; }
+  .dash__top { grid-template-columns: 1fr auto; }
+  .nav { height: 72px; grid-template-columns: 1fr auto; }
+  .nav__actions { display: none; }
+  .nav__toggle { display: grid; }
+  .nav__links {
+    position: fixed; top: 76px; left: 16px; right: 16px; z-index: 70;
+    flex-direction: column; align-items: stretch; gap: 2px; padding: 12px;
+    background: rgba(16, 16, 17, .96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--line-2); border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+    opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .25s, transform .25s var(--ease), visibility .25s;
+  }
+  .site-header.is-open .nav__links { opacity: 1; visibility: visible; transform: none; }
+  .nav__links > a { padding: 14px 16px; border-radius: 12px; font-size: 17px; }
+  .nav__links > a:hover, .nav__links > a.is-active { background: rgba(255, 255, 255, .05); }
+  .nav__links-mobile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 4px 4px; margin-top: 8px; border-top: 1px solid var(--line); }
+  .nav__links-mobile-actions .btn { height: 48px; min-width: 0; }
+
+  .hero__stage { margin-top: 72px; }
+  .logos { justify-content: center; gap: 28px 40px; }
+
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .bento__gateway, .bento__schedule, .bento__limits, .bento__track { grid-column: auto; }
+  .bento__card { min-height: 0; padding-bottom: 0; }
+  .gw__grid { grid-template-columns: repeat(5, 1fr); }
+  .orbit { margin-top: 18px; }
+  .people { margin-bottom: 0; }
+
+  .features { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+  .plans { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; gap: 20px; }
+  .faq__inner { grid-template-columns: 1fr; }
+  .faq__head { position: static; }
+  .faq__head h2, .faq__head p { max-width: none; }
+  .cta__inner { grid-template-columns: 1fr; }
+  .cta h2 { max-width: 14em; }
+  .footer__grid { grid-template-columns: 1fr 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 700px) {
+  .dash { max-height: 860px; border-radius: 18px 18px 0 0; }
+  .dash__top { grid-template-columns: 1fr auto; height: 64px; padding: 0 16px; }
+  .dash__tabs, .dash__side, .dash__user small, .dash__icon:not(.dash__icon--dot) { display: none; }
+  .dash__body { grid-template-columns: 1fr; }
+  .dash__main { padding: 20px 16px 0; }
+  .dash__hello { font-size: 24px; }
+  .dash__sub { font-size: 12.5px; }
+  .dash__grid { grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
+  .d-stats { grid-template-rows: 124px 90px; }
+  .d-balance__amount { font-size: 26px; }
+  .d-stat b { font-size: 26px; }
+  .gw__grid { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 58px); gap: 10px; }
+  .gw { height: 194px; margin-inline: -14px; }
+  .gw__core { width: 68px; height: 68px; }
+  .bento__card { padding: 22px 20px 0; }
+  .panel { padding-inline: 12px; }
+}
+
+@media (max-width: 600px) {
+  .chart__x span:nth-child(even) { visibility: hidden; }
+  .chart__y { font-size: 9.5px; }
+  .features { grid-template-columns: minmax(0, 1fr); }
+  .feature { padding: 32px 24px 30px; }
+  .btn { min-width: 0; }
+  .hero__cta { width: 100%; flex-direction: column; align-items: stretch; max-width: 360px; }
+  .hero__stage { margin-top: 56px; }
+  .acc__btn { padding: 22px 20px; }
+  .acc__panel p { padding: 0 20px 24px; }
+  .news__row { flex-direction: column; }
+  .news input { flex: none; width: 100%; }
+  .news .btn { width: 100%; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+  .footer__legal { gap: 24px; }
+  .footer__bar { flex-direction: column; align-items: flex-start; }
+  .plan { padding: 28px 22px 30px; }
+  .billing { margin-bottom: 36px; }
+}
+
+@media (max-width: 400px) {
+  :root { --gutter: 16px; }
+  .logo__text { font-size: 20px; }
+  .logos { gap: 22px 28px; }
+  .brand svg { height: 22px; }
+  .brand__name { font-size: 19px; }
+  .brand__name--heavy { font-size: 20px; }
+  .brand__name--wide { font-size: 16px; }
+  .d-stats { grid-template-rows: 116px 84px; }
+  .d-stat { padding: 14px; }
+  .d-stat b { font-size: 22px; }
+  .d-stat--sm b { font-size: 19px; }
+  .d-balance__amount { font-size: 23px; }
+  .gw__grid { grid-template-columns: repeat(3, 1fr); }
+  .gw__tile:nth-child(n+1) { }
+  .plan__amount { font-size: 40px; }
+  .footer__grid { grid-template-columns: 1fr; }
+  .modal { padding: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ SVG SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a45"/><stop offset="1" stop-color="#f2461a"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="url(#logo-g)"/><path fill="#fff" fill-rule="evenodd" d="M10 22V10h7.2c2.6 0 4.3 1.6 4.3 3.9 0 1.6-.9 2.9-2.4 3.5L22 22h-3.1l-2.4-4.2H13V22zm3-9.3v3h3.9c1 0 1.7-.6 1.7-1.5s-.7-1.5-1.7-1.5z"/></symbol>
+
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h13v4M3 7v11a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2zM16 14h2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-down-left" viewBox="0 0 24 24"><path d="M17 7 7 17M16 17H7V8"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m11 3 1.9 5.3L18 10l-5.1 1.7L11 17l-1.9-5.3L4 10l5.1-1.7zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7M15.5 10.2C18.8 10.4 21 11.6 21 13v4c0 1.7-2.7 3-6 3-2.2 0-4.100-.6-5.1-1.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.200 3 3.200 15 0 18M12 3c-3.200 3-3.200 15 0 18"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="m3 10 9-6 9 6M5 10v8M9.500 10v8M14.500 10v8M19 10v8M3 20.500h18"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.1M14 20h.1M17 20h4v-3"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/><path d="m9 12 2.200 2.200L15 10.500"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.500"/><path d="m3.500 7.500 8.500 6 8.500-6"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a class="logo" href="#home" aria-label="RichPath home">
+      <svg class="logo__mark" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="logo__text">RichPath</span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" aria-label="Primary">
+      <a href="#home" class="is-active">Home</a>
+      <a href="#technology">Technology</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <div class="nav__links-mobile-actions">
+        <button class="btn btn--ghost btn--block" type="button" data-auth="login">Log in</button>
+        <button class="btn btn--primary btn--block" type="button" data-auth="signup">Sign Up</button>
+      </div>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="nav__login" type="button" data-auth="login">Log in</button>
+      <button class="btn btn--dark btn--pill" type="button" data-auth="signup">Sign Up</button>
+    </div>
+
+    <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <svg class="ic ic--menu" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="ic ic--close" aria-hidden="true"><use href="#i-x"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="container hero__inner">
+      <span class="badge"><i class="badge__dot"></i>Manage Your Finances</span>
+      <h1 class="hero__title">Finance That Grows with Your Ambition</h1>
+      <p class="hero__lead">Unlock powerful tools to manage, track, and scale your finances seamlessly. Designed to support your goals at every stage of growth.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#pricing">Get Started Free</a>
+        <button class="btn btn--dark" type="button" data-demo><svg class="ic ic--fill" aria-hidden="true"><use href="#i-play"/></svg>Watch Demo</button>
+      </div>
+    </div>
+
+    <div class="container hero__stage">
+      <svg class="hero__arc" viewBox="0 0 1100 150" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="arc-stroke" x1="0" x2="1">
+            <stop offset="0" stop-color="#ff5a2a" stop-opacity="0"/>
+            <stop offset=".22" stop-color="#ff5a2a" stop-opacity=".8"/>
+            <stop offset=".5" stop-color="#ffb07a"/>
+            <stop offset=".78" stop-color="#ff5a2a" stop-opacity=".8"/>
+            <stop offset="1" stop-color="#ff5a2a" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="arc-fill" cx=".5" cy="1" r=".75">
+            <stop offset="0" stop-color="#ff5a2a" stop-opacity=".55"/>
+            <stop offset=".6" stop-color="#ff5a2a" stop-opacity=".12"/>
+            <stop offset="1" stop-color="#ff5a2a" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="arc-blur" x="-10%" y="-80%" width="120%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+        </defs>
+        <path d="M0 150A550 148 0 0 1 1100 150Z" fill="url(#arc-fill)"/>
+        <path d="M2 150A548 146 0 0 1 1098 150" fill="none" stroke="url(#arc-stroke)" stroke-width="12" filter="url(#arc-blur)" vector-effect="non-scaling-stroke"/>
+        <path d="M2 150A548 146 0 0 1 1098 150" fill="none" stroke="url(#arc-stroke)" stroke-width="2.2" vector-effect="non-scaling-stroke"/>
+      </svg>
+
+      <!-- Dashboard preview -->
+      <div class="dash" aria-hidden="true">
+        <div class="dash__top">
+          <span class="logo logo--sm"><svg class="logo__mark"><use href="#logo"/></svg><span class="logo__text">RichPath</span></span>
+          <nav class="dash__tabs">
+            <span class="is-active">Overview</span><span>Activity</span><span>Manage</span><span>Program</span><span>Account</span><span>Reports</span>
+          </nav>
+          <div class="dash__tools">
+            <span class="dash__icon"><svg class="ic"><use href="#i-search"/></svg></span>
+            <span class="dash__icon dash__icon--dot"><svg class="ic"><use href="#i-bell"/></svg></span>
+            <span class="dash__user">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNGFhM2ZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMWY1ZmQwIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iI2ZmZmZmZiIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2I1N2E1NSIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYjU3YTU1Ii8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYjU3YTU1Ii8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjYjU3YTU1Ii8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzE1MTEwZiIvPjxjaXJjbGUgY3g9IjUxIiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxjaXJjbGUgY3g9IjY5IiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxwYXRoIGQ9Ik01MyA2OHE3IDUgMTQgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExMjEwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNzUiLz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNsKSIvPjwvc3ZnPg==" alt="" width="28" height="28">
+              <span><b>Sajibur Rahman</b><small>sajibur@email.com</small></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="dash__body">
+          <aside class="dash__side">
+            <span class="is-active"><svg class="ic"><use href="#i-home"/></svg></span>
+            <span><svg class="ic"><use href="#i-grid"/></svg></span>
+            <span><svg class="ic"><use href="#i-wallet"/></svg></span>
+            <span><svg class="ic"><use href="#i-chart"/></svg></span>
+            <span><svg class="ic"><use href="#i-card"/></svg></span>
+            <span><svg class="ic"><use href="#i-user"/></svg></span>
+            <span><svg class="ic"><use href="#i-sliders"/></svg></span>
+          </aside>
+
+          <div class="dash__main">
+            <h2 class="dash__hello">Good morning, Sajibur</h2>
+            <p class="dash__sub">Stay on top of your tasks, monitor progress, and track status.</p>
+
+            <div class="dash__grid">
+              <div class="d-card d-balance">
+                <div class="d-balance__head"><span>Total Balance</span><span class="chip"><i class="chip__flag"></i>USD<svg class="ic"><use href="#i-chevron-down"/></svg></span></div>
+                <div class="d-balance__amount">$689,372.00</div>
+                <div class="d-balance__delta"><b>+2.4%</b> vs last month</div>
+                <div class="d-balance__actions">
+                  <span class="pill pill--light"><svg class="ic"><use href="#i-up-right"/></svg>Transfer</span>
+                  <span class="pill pill--dark"><svg class="ic"><use href="#i-down-left"/></svg>Request</span>
+                </div>
+                <ul class="d-list">
+                  <li><span class="d-list__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><span>Salary deposit</span><b>+$12,400</b></li>
+                  <li><span class="d-list__ic"><svg class="ic"><use href="#i-card"/></svg></span><span>Card payment</span><b>−$2,180</b></li>
+                  <li><span class="d-list__ic"><svg class="ic"><use href="#i-bank"/></svg></span><span>Savings transfer</span><b>−$3,000</b></li>
+                </ul>
+              </div>
+
+              <div class="d-stats">
+                <div class="d-card d-stat d-stat--accent"><span class="d-stat__label">Total Earnings<i class="d-stat__arrow"><svg class="ic"><use href="#i-up-right"/></svg></i></span><b>$950</b><small>+12.5% this week</small></div>
+                <div class="d-card d-stat"><span class="d-stat__label">Total Spending<i class="d-stat__arrow"><svg class="ic"><use href="#i-up-right"/></svg></i></span><b>$700</b><small>−3.1% this week</small></div>
+                <div class="d-card d-stat d-stat--sm"><span class="d-stat__label">Total Income</span><b>$1,050</b></div>
+                <div class="d-card d-stat d-stat--sm"><span class="d-stat__label">Total Revenue</span><b>$850</b></div>
+              </div>
+
+              <div class="d-card d-chart">
+                <div class="d-chart__head"><span>Total Income</span><span class="chip chip--ghost">Last 12 months<svg class="ic"><use href="#i-chevron-down"/></svg></span></div>
+                <div class="d-chart__sub"><span>Profit and Loss</span><span class="legend"><i class="dot dot--send"></i>Send <i class="dot dot--recv"></i>Receive</span></div>
+                <div class="chart chart--mini" data-chart="mini"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUSTED BY ============ -->
+  <section class="trusted" id="trusted" aria-labelledby="trusted-title">
+    <div class="container">
+      <h2 class="trusted__title" id="trusted-title">Trusted by 4,000+ Growing Companies</h2>
+      <ul class="logos" aria-label="Customer logos">
+        <li class="brand">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="currentColor"/><path d="M7 11.500c4.500-1.500 9.500-1 14 1.500M8 15.200c3.800-1 8-.6 11.800 1.200M9 18.500c3-.7 6-.4 9 .9" fill="none" stroke="#0a0a0b" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="brand__name brand__name--lg">Orbitly</span>
+        </li>
+        <li class="brand brand--word"><span class="brand__name brand__name--heavy">novabase</span></li>
+        <li class="brand">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><g fill="currentColor"><rect x="3" y="3" width="9" height="9" rx="3"/><rect x="16" y="3" width="9" height="9" rx="4.500"/><rect x="3" y="16" width="9" height="9" rx="4.500"/><rect x="16" y="16" width="9" height="9" rx="3"/></g></svg>
+          <span class="brand__name brand__name--heavy">linkloop</span>
+        </li>
+        <li class="brand">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 26 14 14 26 2 14z" fill="currentColor"/><path d="M14 8l6 6-6 6-6-6z" fill="#0a0a0b"/></svg>
+          <span class="brand__name">Cubix</span>
+        </li>
+        <li class="brand brand--word"><span class="brand__name brand__name--wide">ZENITH</span></li>
+        <li class="brand">
+          <svg viewBox="0 0 32 28" aria-hidden="true"><path d="M2 8c5 0 7 12 12 12s6-9 10-9" fill="none" stroke="currentColor" stroke-width="4.200" stroke-linecap="round"/><circle cx="27" cy="9" r="3" fill="currentColor"/></svg>
+          <span class="brand__name brand__name--italic">Flowdesk</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ FINANCE FOR THE MODERN BUSINESS ============ -->
+  <section class="section modern" id="technology" aria-labelledby="modern-title">
+    <div class="container">
+      <header class="section__head">
+        <h2 id="modern-title">Finance for the Modern Business</h2>
+        <p>Tailored financial tools designed to simplify management, boost efficiency, and support your business's growth in today's fast-paced world.</p>
+      </header>
+
+      <div class="bento">
+        <!-- 1 Gateway -->
+        <article class="card bento__card bento__gateway">
+          <div class="bento__copy">
+            <h3>Supports Any Payment Gateway</h3>
+            <p>Connect effortlessly with any payment gateway to accept payments seamlessly and keep your transactions running smoothly.</p>
+          </div>
+          <div class="gw" aria-hidden="true">
+            <div class="gw__grid" data-gateway></div>
+            <div class="gw__core"><svg><use href="#logo"/></svg></div>
+          </div>
+        </article>
+
+        <!-- 2 Scheduling -->
+        <article class="card bento__card bento__schedule">
+          <div class="bento__copy">
+            <h3>Automated Payment Scheduling</h3>
+            <p>Schedule payments in advance and automate recurring bills to stay organised and never miss a due date.</p>
+          </div>
+          <svg class="orbit" viewBox="0 0 600 270" role="img" aria-label="Payments flowing between four team members and a central account">
+            <defs>
+              <radialGradient id="orb-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff5a2a" stop-opacity=".42"/><stop offset="1" stop-color="#ff5a2a" stop-opacity="0"/></radialGradient>
+              <linearGradient id="orb-core" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a45"/><stop offset="1" stop-color="#f2461a"/></linearGradient>
+              <clipPath id="c1"><circle cx="118" cy="56" r="24"/></clipPath>
+              <clipPath id="c2"><circle cx="482" cy="56" r="24"/></clipPath>
+              <clipPath id="c3"><circle cx="118" cy="222" r="24"/></clipPath>
+              <clipPath id="c4"><circle cx="482" cy="222" r="24"/></clipPath>
+            </defs>
+            <circle cx="300" cy="139" r="130" fill="url(#orb-glow)" opacity=".5"/>
+            <g fill="none" stroke="#fff">
+              <circle cx="300" cy="139" r="46" stroke-opacity=".14"/>
+              <circle cx="300" cy="139" r="84" stroke-opacity=".09"/>
+              <circle cx="300" cy="139" r="124" stroke-opacity=".06"/>
+              <circle cx="300" cy="139" r="168" stroke-opacity=".04"/>
+            </g>
+            <g class="orbit__lines" fill="none" stroke="#ff5a2a" stroke-opacity=".5" stroke-width="1.2" stroke-dasharray="3 5">
+              <path d="M142 56H214V139H268"/><path d="M458 56H386V139H332"/>
+              <path d="M142 222H214V139"/><path d="M458 222H386V139"/>
+            </g>
+            <g>
+              <circle cx="118" cy="56" r="27" fill="#0d0d0e" stroke="#fff" stroke-opacity=".14"/><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY4YTRjIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZTg0OTFiIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iIzJiMmYzYSIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2M5OGE2MiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYzk4YTYyIi8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYzk4YTYyIi8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjYzk4YTYyIi8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzFjMTQxMCIvPjxwYXRoIGQ9Ik0zOSA1OGMxIDIyIDExIDMyIDIxIDMyczIwLTEwIDIxLTMyYy0zIDEwLTkgMTQtMjEgMTRTNDIgNjggMzkgNTh6IiBmaWxsPSIjMWMxNDEwIiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSI1MSIgY3k9IjU2IiByPSIxLjkiIGZpbGw9IiMxYTEyMTAiLz48Y2lyY2xlIGN4PSI2OSIgY3k9IjU2IiByPSIxLjkiIGZpbGw9IiMxYTEyMTAiLz48cGF0aCBkPSJNNTMgNjhxNyA1IDE0IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhMTIxMCIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjc1Ii8+PHJlY3Qgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9InVybCgjbCkiLz48L3N2Zz4=" x="94" y="32" width="48" height="48" clip-path="url(#c1)"/>
+              <circle cx="482" cy="56" r="27" fill="#0d0d0e" stroke="#fff" stroke-opacity=".14"/><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYjc4Y2ZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNmEzZmQwIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTM0IDU2QzMwIDI2IDQ2IDE0IDYyIDE0czMyIDEyIDI4IDQyYy0xIDE4IDQgMzQgOCA0NkgyOGM0LTEyIDctMjggNi00NnoiIGZpbGw9IiMyYTFhMTQiLz48cGF0aCBkPSJNMTIgMTIwQzE0IDkyIDM2IDg0IDYwIDg0czQ2IDggNDggMzZ6IiBmaWxsPSIjZjNmMGZmIi8+PHBhdGggZD0iTTUwIDg0aDIwbC0yIDEyYy00IDQtMTIgNC0xNiAweiIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjEyIi8+PHJlY3QgeD0iNTIiIHk9IjY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjIiIHJ4PSI3IiBmaWxsPSIjZTBhYzg0Ii8+PHJlY3QgeD0iNTIiIHk9IjY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjIiIHJ4PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMTQiLz48ZWxsaXBzZSBjeD0iMzkiIGN5PSI1NyIgcng9IjQuNSIgcnk9IjYiIGZpbGw9IiNlMGFjODQiLz48ZWxsaXBzZSBjeD0iODEiIGN5PSI1NyIgcng9IjQuNSIgcnk9IjYiIGZpbGw9IiNlMGFjODQiLz48ZWxsaXBzZSBjeD0iNjAiIGN5PSI1NCIgcng9IjIxIiByeT0iMjUiIGZpbGw9IiNlMGFjODQiLz48cGF0aCBkPSJNMzggNTBDMzYgMzAgNDggMjQgNjAgMjRzMjQgNiAyMiAyNmMtNC04LTEyLTE0LTIyLTE0cy0xOCA2LTIyIDE0eiIgZmlsbD0iIzJhMWExNCIvPjxjaXJjbGUgY3g9IjUxIiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxjaXJjbGUgY3g9IjY5IiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxwYXRoIGQ9Ik01MyA2OHE3IDUgMTQgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExMjEwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNzUiLz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNsKSIvPjwvc3ZnPg==" x="458" y="32" width="48" height="48" clip-path="url(#c2)"/>
+              <circle cx="118" cy="222" r="27" fill="#0d0d0e" stroke="#fff" stroke-opacity=".14"/><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmUzYjRhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMTIxNzFkIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iI2Q4ZGRlNiIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2E1NmY0YiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYTU2ZjRiIi8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYTU2ZjRiIi8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjYTU2ZjRiIi8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzBlMGUwZSIvPjxjaXJjbGUgY3g9IjUxIiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxjaXJjbGUgY3g9IjY5IiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxwYXRoIGQ9Ik01MyA2OHE3IDUgMTQgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExMjEwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNzUiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwYjBiMGIiIHN0cm9rZS13aWR0aD0iMS44Ij48Y2lyY2xlIGN4PSI1MSIgY3k9IjU2IiByPSI2LjUiLz48Y2lyY2xlIGN4PSI2OSIgY3k9IjU2IiByPSI2LjUiLz48cGF0aCBkPSJNNTcuNSA1Nmg1Ii8+PC9nPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2wpIi8+PC9zdmc+" x="94" y="198" width="48" height="48" clip-path="url(#c3)"/>
+              <circle cx="482" cy="222" r="27" fill="#0d0d0e" stroke="#fff" stroke-opacity=".14"/><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjM2Y1ZDNhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMTcyNjFhIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iI2U5ZWNlZiIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2Q5YTA3NyIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjZDlhMDc3Ii8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjZDlhMDc3Ii8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjZDlhMDc3Ii8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzNhMjQxOCIvPjxwYXRoIGQ9Ik0zOSA1OGMxIDIyIDExIDMyIDIxIDMyczIwLTEwIDIxLTMyYy0zIDEwLTkgMTQtMjEgMTRTNDIgNjggMzkgNTh6IiBmaWxsPSIjM2EyNDE4IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSI1MSIgY3k9IjU2IiByPSIxLjkiIGZpbGw9IiMxYTEyMTAiLz48Y2lyY2xlIGN4PSI2OSIgY3k9IjU2IiByPSIxLjkiIGZpbGw9IiMxYTEyMTAiLz48cGF0aCBkPSJNNTMgNjhxNyA1IDE0IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhMTIxMCIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjc1Ii8+PHJlY3Qgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9InVybCgjbCkiLz48L3N2Zz4=" x="458" y="198" width="48" height="48" clip-path="url(#c4)"/>
+            </g>
+            <circle cx="300" cy="139" r="34" fill="#ff5a2a" opacity=".25"/>
+            <circle cx="300" cy="139" r="28" fill="url(#orb-core)"/>
+            <text x="300" y="150" text-anchor="middle" font-size="30" font-weight="600" fill="#fff" font-family="Inter, system-ui, sans-serif">$</text>
+          </svg>
+        </article>
+
+        <!-- 3 Payments without limits -->
+        <article class="card bento__card bento__limits">
+          <div class="bento__copy">
+            <h3>Payments Without Limits</h3>
+            <p>Send and receive payments anytime, anywhere, without restrictions — empowering your business to operate freely.</p>
+          </div>
+          <ul class="people" aria-label="Recent payment recipients">
+            <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNGFhM2ZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMWY1ZmQwIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iI2ZmZmZmZiIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2I1N2E1NSIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYjU3YTU1Ii8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYjU3YTU1Ii8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjYjU3YTU1Ii8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzE1MTEwZiIvPjxjaXJjbGUgY3g9IjUxIiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxjaXJjbGUgY3g9IjY5IiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxwYXRoIGQ9Ik01MyA2OHE3IDUgMTQgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExMjEwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNzUiLz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNsKSIvPjwvc3ZnPg==" alt="" width="40" height="40"><span class="people__who"><b>Arjun Malik</b><small>arjun.malik@example.com</small></span><span class="status status--ok">Approved</span></li>
+            <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmUzYjRhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMTIxNzFkIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iI2Q4ZGRlNiIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2E1NmY0YiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYTU2ZjRiIi8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjYTU2ZjRiIi8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjYTU2ZjRiIi8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzBlMGUwZSIvPjxjaXJjbGUgY3g9IjUxIiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxjaXJjbGUgY3g9IjY5IiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxwYXRoIGQ9Ik01MyA2OHE3IDUgMTQgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExMjEwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNzUiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwYjBiMGIiIHN0cm9rZS13aWR0aD0iMS44Ij48Y2lyY2xlIGN4PSI1MSIgY3k9IjU2IiByPSI2LjUiLz48Y2lyY2xlIGN4PSI2OSIgY3k9IjU2IiByPSI2LjUiLz48cGF0aCBkPSJNNTcuNSA1Nmg1Ii8+PC9nPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2wpIi8+PC9zdmc+" alt="" width="40" height="40"><span class="people__who"><b>Ravi Kumar</b><small>ravi.kumar@example.com</small></span><span class="status status--ok">Approved</span></li>
+            <li class="is-pending"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZiMzQ3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZDk3MzFhIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTM0IDU2QzMwIDI2IDQ2IDE0IDYyIDE0czMyIDEyIDI4IDQyYy0xIDE4IDQgMzQgOCA0NkgyOGM0LTEyIDctMjggNi00NnoiIGZpbGw9IiM2YjNiMWUiLz48cGF0aCBkPSJNMTIgMTIwQzE0IDkyIDM2IDg0IDYwIDg0czQ2IDggNDggMzZ6IiBmaWxsPSIjMjczMDQzIi8+PHBhdGggZD0iTTUwIDg0aDIwbC0yIDEyYy00IDQtMTIgNC0xNiAweiIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjEyIi8+PHJlY3QgeD0iNTIiIHk9IjY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjIiIHJ4PSI3IiBmaWxsPSIjZTZiNjkwIi8+PHJlY3QgeD0iNTIiIHk9IjY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjIiIHJ4PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMTQiLz48ZWxsaXBzZSBjeD0iMzkiIGN5PSI1NyIgcng9IjQuNSIgcnk9IjYiIGZpbGw9IiNlNmI2OTAiLz48ZWxsaXBzZSBjeD0iODEiIGN5PSI1NyIgcng9IjQuNSIgcnk9IjYiIGZpbGw9IiNlNmI2OTAiLz48ZWxsaXBzZSBjeD0iNjAiIGN5PSI1NCIgcng9IjIxIiByeT0iMjUiIGZpbGw9IiNlNmI2OTAiLz48cGF0aCBkPSJNMzggNTBDMzYgMzAgNDggMjQgNjAgMjRzMjQgNiAyMiAyNmMtNC04LTEyLTE0LTIyLTE0cy0xOCA2LTIyIDE0eiIgZmlsbD0iIzZiM2IxZSIvPjxjaXJjbGUgY3g9IjUxIiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxjaXJjbGUgY3g9IjY5IiBjeT0iNTYiIHI9IjEuOSIgZmlsbD0iIzFhMTIxMCIvPjxwYXRoIGQ9Ik01MyA2OHE3IDUgMTQgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExMjEwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNzUiLz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNsKSIvPjwvc3ZnPg==" alt="" width="40" height="40"><span class="people__who"><b>Dev Patel</b><small>dev.patel@example.com</small></span><span class="status status--wait">Pending</span></li>
+            <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjM2Y1ZDNhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMTcyNjFhIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImwiIGN4PSIuMyIgY3k9Ii4yNSIgcj0iLjgiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIuMjgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTEyIDEyMEMxNCA5MiAzNiA4NCA2MCA4NHM0NiA4IDQ4IDM2eiIgZmlsbD0iI2U5ZWNlZiIvPjxwYXRoIGQ9Ik01MCA4NGgyMGwtMiAxMmMtNCA0LTEyIDQtMTYgMHoiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iI2Q5YTA3NyIvPjxyZWN0IHg9IjUyIiB5PSI2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIyIiByeD0iNyIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjE0Ii8+PGVsbGlwc2UgY3g9IjM5IiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjZDlhMDc3Ii8+PGVsbGlwc2UgY3g9IjgxIiBjeT0iNTciIHJ4PSI0LjUiIHJ5PSI2IiBmaWxsPSIjZDlhMDc3Ii8+PGVsbGlwc2UgY3g9IjYwIiBjeT0iNTQiIHJ4PSIyMSIgcnk9IjI1IiBmaWxsPSIjZDlhMDc3Ii8+PHBhdGggZD0iTTM4IDUyQzM0IDI4IDQ4IDE4IDYyIDE4YzE2IDAgMjYgMTIgMjIgMzQtMy0xMC05LTE3LTI0LTE3cy0xOSA3LTIyIDE3eiIgZmlsbD0iIzNhMjQxOCIvPjxwYXRoIGQ9Ik0zOSA1OGMxIDIyIDExIDMyIDIxIDMyczIwLTEwIDIxLTMyYy0zIDEwLTkgMTQtMjEgMTRTNDIgNjggMzkgNTh6IiBmaWxsPSIjM2EyNDE4IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSI1MSIgY3k9IjU2IiByPSIxLjkiIGZpbGw9IiMxYTEyMTAiLz48Y2lyY2xlIGN4PSI2OSIgY3k9IjU2IiByPSIxLjkiIGZpbGw9IiMxYTEyMTAiLz48cGF0aCBkPSJNNTMgNjhxNyA1IDE0IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhMTIxMCIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjc1Ii8+PHJlY3Qgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9InVybCgjbCkiLz48L3N2Zz4=" alt="" width="40" height="40"><span class="people__who"><b>Kiran Singh</b><small>kiran.singh@example.com</small></span><span class="status status--ok">Approved</span></li>
+          </ul>
+        </article>
+
+        <!-- 4 Expense tracking -->
+        <article class="card bento__card bento__track">
+          <div class="bento__copy">
+            <h3>Real-Time Expense Tracking</h3>
+            <p>Monitor every expense as it happens, giving you instant clarity and full control over your spending.</p>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><span>Profit and Loss</span><span class="legend"><i class="dot dot--send"></i>Send <i class="dot dot--recv"></i>Receive</span></div>
+            <div class="chart chart--full" data-chart="full"></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BANKING REIMAGINED ============ -->
+  <section class="section banking" id="features" aria-labelledby="banking-title">
+    <div class="container">
+      <header class="section__head">
+        <h2 id="banking-title">Banking Reimagined for the Future You</h2>
+        <p>Trust us to deliver cutting-edge innovation, transparency, and personalized service, all designed to help you achieve financial freedom</p>
+      </header>
+
+      <ul class="features">
+        <li class="card feature"><span class="feature__icon"><svg class="ic"><use href="#i-user-plus"/></svg></span><h3>Instant Account Setup</h3><p>Open an account in minutes with a fully digital onboarding experience</p></li>
+        <li class="card feature"><span class="feature__icon"><svg class="ic"><use href="#i-clock"/></svg></span><h3>Real-Time Payments</h3><p>Enables instant money transfers, both domestically and internationally</p></li>
+        <li class="card feature"><span class="feature__icon"><svg class="ic"><use href="#i-phone"/></svg></span><h3>Mobile Banking</h3><p>Full-featured mobile app that allows users to manage their finances</p></li>
+        <li class="card feature"><span class="feature__icon"><svg class="ic"><use href="#i-coins"/></svg></span><h3>Smart Savings Goals</h3><p>Set targets and automate contributions to reach them faster</p></li>
+        <li class="card feature"><span class="feature__icon"><svg class="ic"><use href="#i-sparkles"/></svg></span><h3>AI-Powered Budgeting</h3><p>Use AI to analyze spending patterns and provide personalized budgeting</p></li>
+        <li class="card feature"><span class="feature__icon"><svg class="ic"><use href="#i-card"/></svg></span><h3>Virtual Credit Cards</h3><p>Generate virtual cards instantly for online shopping</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+    <div class="container">
+      <header class="section__head section__head--narrow">
+        <h2 id="pricing-title">Flexible Plans for Every Need and Budget</h2>
+        <p>Choose the perfect plan to scale, save, and maximize value.</p>
+      </header>
+
+      <div class="billing" role="group" aria-label="Billing period">
+        <button type="button" class="billing__btn is-active" data-billing="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" class="billing__btn" data-billing="yearly" aria-pressed="false">Yearly <span class="billing__save">-20%</span></button>
+      </div>
+
+      <div class="plans">
+        <article class="card plan">
+          <h3>Starter Plan</h3>
+          <p class="plan__desc">For individuals and small teams getting started.</p>
+          <div class="plan__price"><span class="plan__amount" data-monthly="49" data-yearly="39">$49</span><span class="plan__per">/Month</span></div>
+          <button class="btn btn--dark btn--block" type="button" data-auth="signup" data-plan="Starter Plan">Start a Project</button>
+          <ul class="plan__list plan__list--plain">
+            <li><svg class="ic"><use href="#i-check"/></svg>Core Dashboard Access</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Up to 3 Team Members</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Basic Reporting Tools</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Standard Email Support</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Monthly Spending Insights</li>
+          </ul>
+        </article>
+
+        <article class="card plan plan--featured">
+          <h3>Pro Plan</h3>
+          <p class="plan__desc">For growing teams who need more power and flexibility.</p>
+          <div class="plan__price"><span class="plan__amount" data-monthly="120" data-yearly="96">$120</span><span class="plan__per">/Month</span></div>
+          <button class="btn btn--primary btn--block" type="button" data-auth="signup" data-plan="Pro Plan">Start a Project</button>
+          <ul class="plan__list">
+            <li><i><svg class="ic"><use href="#i-check"/></svg></i>All Features at No Cost</li>
+            <li><i><svg class="ic"><use href="#i-check"/></svg></i>Endless Dashboard Options</li>
+            <li><i><svg class="ic"><use href="#i-check"/></svg></i>Collaborate Seamlessly with Team</li>
+            <li><i><svg class="ic"><use href="#i-check"/></svg></i>In-Depth Reporting Tools</li>
+            <li><i><svg class="ic"><use href="#i-check"/></svg></i>Expedited Email Assistance</li>
+          </ul>
+        </article>
+
+        <article class="card plan">
+          <h3>Enterprise Plan</h3>
+          <p class="plan__desc">Custom solutions for large teams and businesses.</p>
+          <div class="plan__price"><span class="plan__amount" data-monthly="450" data-yearly="360">$450</span><span class="plan__per">/Month</span></div>
+          <button class="btn btn--dark btn--block" type="button" data-auth="signup" data-plan="Enterprise Plan">Start a Project</button>
+          <ul class="plan__list plan__list--plain">
+            <li><svg class="ic"><use href="#i-check"/></svg>Custom Pricing</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Everything in Pro</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Dedicated Account Manager</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>API Access &amp; Integrations</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Custom Security &amp; Compliance</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="container faq__inner">
+      <header class="faq__head">
+        <h2 id="faq-title">Have Questions? Get the Answers You Need</h2>
+        <p>Find quick answers about how RichPath works, how we keep your money safe, and how to get started with confidence.</p>
+      </header>
+
+      <div class="accordion" data-accordion>
+        <div class="acc is-open">
+          <h3><button class="acc__btn" type="button" aria-expanded="true" aria-controls="acc-1" id="acc-btn-1"><span>What is this platform used for?</span><i class="acc__icon"><svg class="ic ic--plus"><use href="#i-plus"/></svg><svg class="ic ic--minus"><use href="#i-minus"/></svg></i></button></h3>
+          <div class="acc__panel" id="acc-1" role="region" aria-labelledby="acc-btn-1"><div><p>Our platform helps you manage, track, and automate your finances to save time and grow efficiently.</p></div></div>
+        </div>
+        <div class="acc">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="acc-2" id="acc-btn-2"><span>Is my financial data secure here?</span><i class="acc__icon"><svg class="ic ic--plus"><use href="#i-plus"/></svg><svg class="ic ic--minus"><use href="#i-minus"/></svg></i></button></h3>
+          <div class="acc__panel" id="acc-2" role="region" aria-labelledby="acc-btn-2"><div><p>Yes. Your data is protected with bank-grade encryption, multi-factor authentication and continuous monitoring, and we never sell your information.</p></div></div>
+        </div>
+        <div class="acc">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="acc-3" id="acc-btn-3"><span>Can I connect multiple bank accounts?</span><i class="acc__icon"><svg class="ic ic--plus"><use href="#i-plus"/></svg><svg class="ic ic--minus"><use href="#i-minus"/></svg></i></button></h3>
+          <div class="acc__panel" id="acc-3" role="region" aria-labelledby="acc-btn-3"><div><p>Absolutely. Link as many accounts and cards as you need and see every balance and transaction together in one dashboard.</p></div></div>
+        </div>
+        <div class="acc">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="acc-4" id="acc-btn-4"><span>Does it work for small businesses?</span><i class="acc__icon"><svg class="ic ic--plus"><use href="#i-plus"/></svg><svg class="ic ic--minus"><use href="#i-minus"/></svg></i></button></h3>
+          <div class="acc__panel" id="acc-4" role="region" aria-labelledby="acc-btn-4"><div><p>Yes. Our Starter and Pro plans are built for small teams, with simple tools that scale as your business grows.</p></div></div>
+        </div>
+        <div class="acc">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="acc-5" id="acc-btn-5"><span>How quickly can I get started?</span><i class="acc__icon"><svg class="ic ic--plus"><use href="#i-plus"/></svg><svg class="ic ic--minus"><use href="#i-minus"/></svg></i></button></h3>
+          <div class="acc__panel" id="acc-5" role="region" aria-labelledby="acc-btn-5"><div><p>In just a few minutes. Create your account, connect your banks and your dashboard is ready to use right away.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA / NEWSLETTER ============ -->
+  <section class="cta" aria-labelledby="cta-title">
+    <div class="container cta__inner">
+      <h2 id="cta-title">Ready to pull the trigger? Start your journey today</h2>
+      <form class="news" id="newsletter" novalidate>
+        <label class="news__title" for="news-email">Get Our News And Updates</label>
+        <div class="news__row">
+          <input id="news-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" required>
+          <button class="btn btn--primary" type="submit">Subscribe</button>
+        </div>
+        <p class="news__msg" id="news-msg" role="status" aria-live="polite">By subscribing you agree to our <a href="#footer" data-toast="Privacy Policy">Privacy Policy</a></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="#home" aria-label="RichPath home"><svg class="logo__mark" aria-hidden="true"><use href="#logo"/></svg><span class="logo__text">RichPath</span></a>
+        <p>Powerful tools to manage, track and scale your finances at every stage of growth.</p>
+      </div>
+      <nav class="footer__col" aria-label="Home">
+        <h4>Home</h4>
+        <a href="#features">Product Features</a>
+        <a href="#technology">Benefits</a>
+        <a href="#faq">How To Use</a>
+        <a href="#features">Key Features</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <nav class="footer__col" aria-label="About">
+        <h4>About</h4>
+        <a href="#app">Mobile App</a>
+        <a href="#app">Desktop App</a>
+        <a href="#faq">How To Use</a>
+        <a href="#trusted">Testimonials</a>
+        <a href="#footer" data-toast="Privacy Policy">Privacy Policy</a>
+      </nav>
+      <nav class="footer__col" aria-label="All pages">
+        <h4>All Pages</h4>
+        <a href="#home">Home</a>
+        <a href="#app">App</a>
+        <a href="#footer" data-toast="Blogs">Blogs</a>
+        <a href="#footer" data-toast="Blog">Blog Open</a>
+        <a href="#footer" data-toast="Contact">Contact</a>
+      </nav>
+      <div class="footer__col footer__col--app" id="app">
+        <h4>Download our App</h4>
+        <a class="store" href="#app" data-toast="Android app">
+          <svg class="ic"><use href="#i-store"/></svg>
+          <span><small>Get it on</small><b>Android</b></span>
+        </a>
+        <a class="store" href="#app" data-toast="iOS app">
+          <svg class="ic"><use href="#i-store"/></svg>
+          <span><small>Download on</small><b>iPhone</b></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__bar">
+      <p>© 2026 RichPath. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="#footer" data-toast="Privacy Policy">Privacy Policy</a>
+        <a href="#footer" data-toast="Terms Of Services">Terms Of Services</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ DIALOGS ============ -->
+<dialog class="modal" id="demo-dialog" aria-labelledby="demo-title">
+  <div class="modal__head">
+    <h2 id="demo-title">RichPath product tour</h2>
+    <button class="modal__close" type="button" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="tour">
+    <div class="tour__stage" aria-live="polite">
+      <div class="tour__slide is-active"><span class="tour__icon"><svg class="ic"><use href="#i-bank"/></svg></span><h3>1. Connect your accounts</h3><p>Link banks and cards in minutes and see every balance in one dashboard.</p></div>
+      <div class="tour__slide"><span class="tour__icon"><svg class="ic"><use href="#i-chart"/></svg></span><h3>2. Track in real time</h3><p>Watch income and expenses update the moment they happen, with clear profit and loss charts.</p></div>
+      <div class="tour__slide"><span class="tour__icon"><svg class="ic"><use href="#i-zap"/></svg></span><h3>3. Automate and grow</h3><p>Schedule payments, set savings goals and let AI budgeting keep you on course.</p></div>
+    </div>
+    <div class="tour__dots" role="tablist" aria-label="Tour steps">
+      <button type="button" class="is-active" aria-label="Step 1"></button><button type="button" aria-label="Step 2"></button><button type="button" aria-label="Step 3"></button>
+    </div>
+    <div class="tour__actions">
+      <button class="btn btn--dark" type="button" data-tour="prev">Back</button>
+      <button class="btn btn--primary" type="button" data-tour="next">Next</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="auth-dialog" aria-labelledby="auth-title">
+  <div class="modal__head">
+    <h2 id="auth-title">Welcome back</h2>
+    <button class="modal__close" type="button" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="auth__tabs" role="tablist">
+    <button type="button" role="tab" class="is-active" data-tab="login" aria-selected="true">Log in</button>
+    <button type="button" role="tab" data-tab="signup" aria-selected="false">Sign Up</button>
+  </div>
+  <p class="auth__plan" id="auth-plan" hidden></p>
+  <form class="auth__form" id="auth-form" novalidate>
+    <label class="field field--name" hidden><span>Full name</span><input type="text" name="name" placeholder="Your name" autocomplete="name"></label>
+    <label class="field"><span>Email</span><input type="email" name="email" placeholder="you@company.com" autocomplete="email" required></label>
+    <label class="field"><span>Password</span><input type="password" name="password" placeholder="At least 8 characters" autocomplete="current-password" minlength="8" required></label>
+    <p class="auth__error" id="auth-error" role="alert"></p>
+    <button class="btn btn--primary btn--block" type="submit" id="auth-submit">Log in</button>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* RichPath — interactions
+   header · scroll-spy · charts · gateway tiles · pricing toggle · FAQ · dialogs · newsletter · toast */
+(() => {
+  'use strict';
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+  /* ---------- Toast ---------- */
+  const toastEl = $('#toast');
+  let toastTimer;
+  const toast = (msg) => {
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('is-show'), 2600);
+  };
+
+  // Links to pages that don't exist yet
+  $$('[data-toast]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      toast(`${el.dataset.toast} — coming soon`);
+    });
+  });
+
+  /* ---------- Header: scrolled state + mobile menu ---------- */
+  const header = $('.site-header');
+  const toggle = $('.nav__toggle');
+  const setMenu = (open) => {
+    header.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  toggle.addEventListener('click', () => setMenu(!header.classList.contains('is-open')));
+  $$('#nav-menu a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', (e) => {
+    if (header.classList.contains('is-open') && !header.contains(e.target)) setMenu(false);
+  });
+  window.matchMedia('(min-width: 901px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
+
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Scroll-spy ---------- */
+  const navLinks = $$('.nav__links > a');
+  const spyIds = ['home', 'technology', 'features', 'pricing', 'faq'];
+  const setActive = (id) => navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`));
+  if ('IntersectionObserver' in window) {
+    const seen = new Map();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => seen.set(en.target.id, en.isIntersecting));
+      const current = spyIds.find((id) => seen.get(id));
+      if (current) setActive(current);
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    spyIds.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  /* ---------- Charts ---------- */
+  const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  // [send, receive] in thousands
+  const DATA = [
+    [9.8, 13.6], [8.2, 11.9], [11.4, 16.2], [9.0, 13.1], [12.6, 16.8], [18.2, 13.9],
+    [10.9, 15.2], [12.1, 16.0], [9.3, 13.0], [13.2, 16.9], [11.6, 15.4], [14.5, 15.8],
+  ];
+  const money = (k) => '$' + (k * 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  function buildChart(root) {
+    const mini = root.dataset.chart === 'mini';
+    const max = mini ? 36 : 50;
+    const ticks = ['50k', '40k', '30k', '20k', '10k', '0'];
+
+    const y = document.createElement('div');
+    y.className = 'chart__y';
+    y.innerHTML = ticks.map((t) => `<span>${t}</span>`).join('');
+
+    const plot = document.createElement('div');
+    plot.className = 'chart__plot';
+    plot.innerHTML = `<div class="chart__grid">${ticks.map(() => '<i></i>').join('')}</div>`;
+    const cols = document.createElement('div');
+    cols.className = 'chart__cols';
+
+    DATA.forEach(([send, recv], i) => {
+      const total = send + recv;
+      const col = document.createElement('button');
+      col.type = 'button';
+      col.className = 'chart__col';
+      col.setAttribute('aria-label', `${MONTHS[i]}: sent ${money(send)}, received ${money(recv)}`);
+      const bar = document.createElement('span');
+      bar.className = 'chart__bar';
+      bar.style.height = `${(total / max) * 100}%`;
+      bar.innerHTML = `<span class="s" style="flex:${send}"></span><span class="r" style="flex:${recv}"></span>`;
+      col.appendChild(bar);
+      cols.appendChild(col);
+    });
+    plot.appendChild(cols);
+
+    const x = document.createElement('div');
+    x.className = 'chart__x';
+    x.innerHTML = MONTHS.map((m) => `<span>${m}</span>`).join('');
+
+    root.append(y, plot, x);
+
+    if (mini) {
+      // highlight one bar for visual rhythm, no tooltip
+      cols.children[5].classList.add('is-active');
+      return;
+    }
+
+    const tip = document.createElement('div');
+    tip.className = 'chart__tip';
+    plot.appendChild(tip);
+
+    const show = (i) => {
+      $$('.chart__col', cols).forEach((c, idx) => c.classList.toggle('is-active', idx === i));
+      const col = cols.children[i];
+      const bar = col.firstElementChild;
+      const [send, recv] = DATA[i];
+      tip.innerHTML = `<small>${MONTHS[i]} 10, 2024</small><b>${money(send)}</b><br><b style="opacity:.85">${money(recv)}</b>`;
+      const left = col.offsetLeft + col.offsetWidth / 2;
+      const top = plot.clientHeight - bar.offsetHeight;
+      // keep the tooltip inside the plot horizontally
+      const half = tip.offsetWidth / 2;
+      tip.style.left = `${Math.min(Math.max(left, half), plot.clientWidth - half)}px`;
+      tip.style.top = `${Math.max(top, tip.offsetHeight + 12)}px`;
+    };
+    cols.addEventListener('pointerover', (e) => {
+      const col = e.target.closest('.chart__col');
+      if (col) show([...cols.children].indexOf(col));
+    });
+    cols.addEventListener('focusin', (e) => {
+      const col = e.target.closest('.chart__col');
+      if (col) show([...cols.children].indexOf(col));
+    });
+    show(5);
+    if ('ResizeObserver' in window) new ResizeObserver(() => show(Math.max(0, $$('.chart__col', cols).findIndex((c) => c.classList.contains('is-active'))))).observe(plot);
+  }
+  $$('[data-chart]').forEach(buildChart);
+
+  /* ---------- Payment gateway tiles (decorative) ---------- */
+  const gw = $('[data-gateway]');
+  if (gw) {
+    const icons = ['card', 'wallet', 'bank', 'qr', 'globe', 'coins', 'receipt', 'phone', 'zap', 'shield'];
+    const NS = 'http://www.w3.org/2000/svg';
+    for (let i = 0; i < 21; i++) {
+      const tile = document.createElement('div');
+      tile.className = 'gw__tile';
+      if (i !== 10) {
+        const svg = document.createElementNS(NS, 'svg');
+        svg.setAttribute('class', 'ic');
+        const use = document.createElementNS(NS, 'use');
+        use.setAttribute('href', `#i-${icons[(i * 3 + Math.floor(i / 7)) % icons.length]}`);
+        svg.appendChild(use);
+        tile.appendChild(svg);
+      }
+      gw.appendChild(tile);
+    }
+  }
+
+  /* ---------- Pricing toggle ---------- */
+  const billingBtns = $$('[data-billing]');
+  const setBilling = (mode) => {
+    billingBtns.forEach((b) => {
+      const on = b.dataset.billing === mode;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    $$('.plan__amount').forEach((el) => { el.textContent = `$${el.dataset[mode]}`; });
+    $$('.plan__per').forEach((el) => { el.textContent = mode === 'yearly' ? '/Month, billed yearly' : '/Month'; });
+  };
+  billingBtns.forEach((b) => b.addEventListener('click', () => setBilling(b.dataset.billing)));
+
+  /* ---------- FAQ accordion ---------- */
+  const accs = $$('[data-accordion] .acc');
+  accs.forEach((acc) => {
+    const btn = $('.acc__btn', acc);
+    btn.addEventListener('click', () => {
+      const willOpen = !acc.classList.contains('is-open');
+      accs.forEach((a) => {
+        const open = a === acc && willOpen;
+        a.classList.toggle('is-open', open);
+        $('.acc__btn', a).setAttribute('aria-expanded', String(open));
+      });
+    });
+  });
+
+  /* ---------- Dialog helpers ---------- */
+  const openDialog = (dlg) => { if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', ''); };
+  $$('dialog.modal').forEach((dlg) => {
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    $$('[data-close]', dlg).forEach((b) => b.addEventListener('click', () => dlg.close()));
+  });
+
+  /* ---------- Demo / product tour ---------- */
+  const demo = $('#demo-dialog');
+  const slides = $$('.tour__slide', demo);
+  const dots = $$('.tour__dots button', demo);
+  const nextBtn = $('[data-tour="next"]', demo);
+  const prevBtn = $('[data-tour="prev"]', demo);
+  let step = 0;
+  const goStep = (n) => {
+    step = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === step));
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === step));
+    prevBtn.disabled = step === 0;
+    prevBtn.style.opacity = step === 0 ? '.45' : '1';
+    nextBtn.textContent = step === slides.length - 1 ? 'Get started' : 'Next';
+  };
+  $$('[data-demo]').forEach((b) => b.addEventListener('click', () => { goStep(0); openDialog(demo); }));
+  nextBtn.addEventListener('click', () => {
+    if (step === slides.length - 1) { demo.close(); document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' }); } else goStep(step + 1);
+  });
+  prevBtn.addEventListener('click', () => goStep(step - 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => goStep(i)));
+  demo.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goStep(step + 1);
+    if (e.key === 'ArrowLeft') goStep(step - 1);
+  });
+  goStep(0);
+
+  /* ---------- Auth dialog (log in / sign up) ---------- */
+  const auth = $('#auth-dialog');
+  const authForm = $('#auth-form');
+  const authTitle = $('#auth-title');
+  const authSubmit = $('#auth-submit');
+  const authError = $('#auth-error');
+  const authPlan = $('#auth-plan');
+  const nameField = $('.field--name', auth);
+  const pwInput = $('input[name="password"]', auth);
+  const tabs = $$('.auth__tabs button', auth);
+  let mode = 'login';
+
+  const setMode = (m) => {
+    mode = m;
+    const signup = m === 'signup';
+    tabs.forEach((t) => { const on = t.dataset.tab === m; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', String(on)); });
+    authTitle.textContent = signup ? 'Create your account' : 'Welcome back';
+    authSubmit.textContent = signup ? 'Create account' : 'Log in';
+    nameField.hidden = !signup;
+    pwInput.autocomplete = signup ? 'new-password' : 'current-password';
+    authError.textContent = '';
+    if (!signup) { authPlan.hidden = true; }
+  };
+  tabs.forEach((t) => t.addEventListener('click', () => setMode(t.dataset.tab)));
+
+  $$('[data-auth]').forEach((b) => b.addEventListener('click', () => {
+    setMenu(false);
+    setMode(b.dataset.auth);
+    if (b.dataset.plan) { authPlan.textContent = `Selected: ${b.dataset.plan}`; authPlan.hidden = false; }
+    else authPlan.hidden = true;
+    authForm.reset();
+    $$('input', authForm).forEach((i) => i.classList.remove('is-invalid'));
+    openDialog(auth);
+  }));
+
+  const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  authForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = new FormData(authForm);
+    const email = String(f.get('email') || '').trim();
+    const pw = String(f.get('password') || '');
+    const name = String(f.get('name') || '').trim();
+    const emailInput = $('input[name="email"]', authForm);
+    emailInput.classList.toggle('is-invalid', !emailOk(email));
+    pwInput.classList.toggle('is-invalid', pw.length < 8);
+    if (!emailOk(email)) { authError.textContent = 'Please enter a valid email address.'; emailInput.focus(); return; }
+    if (pw.length < 8) { authError.textContent = 'Password must be at least 8 characters.'; pwInput.focus(); return; }
+    authError.textContent = '';
+    auth.close();
+    toast(mode === 'signup' ? `Welcome to RichPath${name ? ', ' + name.split(' ')[0] : ''}! Your account is ready.` : 'Welcome back! You are logged in.');
+  });
+
+  /* ---------- Newsletter ---------- */
+  const news = $('#newsletter');
+  const newsInput = $('#news-email');
+  const newsMsg = $('#news-msg');
+  const defaultMsg = newsMsg.innerHTML;
+  news.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = newsInput.value.trim();
+    if (!emailOk(v)) {
+      newsInput.classList.add('is-invalid');
+      newsMsg.className = 'news__msg is-error';
+      newsMsg.textContent = 'Please enter a valid email address.';
+      newsInput.focus();
+      return;
+    }
+    newsInput.classList.remove('is-invalid');
+    newsMsg.className = 'news__msg is-ok';
+    newsMsg.textContent = `Thanks! ${v} is now subscribed.`;
+    news.reset();
+  });
+  newsInput.addEventListener('input', () => {
+    if (newsMsg.classList.contains('is-error') || newsMsg.classList.contains('is-ok')) {
+      newsInput.classList.remove('is-invalid');
+      newsMsg.className = 'news__msg';
+      newsMsg.innerHTML = defaultMsg;
+      $('[data-toast]', newsMsg)?.addEventListener('click', (ev) => { ev.preventDefault(); toast('Privacy Policy — coming soon'); });
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
